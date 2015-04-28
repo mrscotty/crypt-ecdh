@@ -24,11 +24,11 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 use Inline C => 'DATA',
    # VERSION => '0.10',
-    NAME => 'Crypto::ECDH';
+    NAME => 'Crypt::ECDH';
 
 use Inline C => Config => (
     INC =>  '-I/opt/local/include -I/usr/local/include',
