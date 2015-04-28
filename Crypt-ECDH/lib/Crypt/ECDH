@@ -1,0 +1,55 @@
+use English;
+
+our $VERSION = '0.10';
+
+use base qw( Exporter );
+
+# This allows declaration	use Crypto::ECDH;
+# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
+# will save memory.
+our %EXPORT_TAGS = ( 'all' => [ qw(
+    verify_signature
+) ] );
+
+our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
+
+our @EXPORT = qw(
+	
+);
+
+use Inline C => 'DATA',
+    VERSION => '2.00',
+    NAME => 'DPG::Signature';
+
+use Inline C => Config => (
+    INC =>  '-I/opt/local/include -I/usr/local/include',
+    LIBS => '-L/opt/local/lib -L/usr/local/lib -lcrypto',
+    #CLEAN_AFTER_BUILD => 0,
+);
+
+my $errorcode = 0;
+my $errormsg = "";
+
+my %msgmap = (
+    0     => 'Signature is valid',
+    1     => 'Invalid signature',
+    2     => 'Error verifying signature',
+    3     => 'Internal error',
+    1000  => 'Unsupported digest algorithm',
+    1001  => 'Incorrect digest length',
+    1002  => 'Could not decode signature (no ASN.1 OctetString wrapper)',
+    1003  => 'Could not decode public key',
+    1004  => 'Unsupported public key algorithm',
+    );
+
+sub verify_signature {
+    my $params = shift;
+    
+    $errorcode = _do_verify_signature(
+	$params->{PUBLICKEY_ALG},
+	$params->{DIGEST_ALG},
+	$params->{DIGEST}, 
+	$params->{SIGNATURE},
+	$params->{PUBLICKEY});
+    
+
