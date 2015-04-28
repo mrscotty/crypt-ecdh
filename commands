@@ -40,7 +40,7 @@ install:
 .PHONY: dist
 dist: ${PACKAGE}-${VERSION}.tar.gz
 ${PACKAGE}-${VERSION}.tar.gz:
-	perl Makefile.PL && make manifest && make && make dist
+	perl Build.PL && ./Build manifest && ./Build && ./Build dist
  
  
 .PHONY: distcheck
@@ -50,7 +50,7 @@ distcheck: dist
  
 .PHONY: test
 test:
-	perl Makefile.PL && make && make test
+	perl Build.PL && ./Build manifest && ./Build && ./Build test
  
  
 .PHONY: tag
