@@ -14,7 +14,7 @@ my $build = $build_pkg->new(
     create_makefile_pl => 'passthrough',
     dist_author => 'Scott Hardin <scott@hnsc.de>',
     dist_version_from => 'lib/Crypt/ECDH.pm',
-};
+);
 
 $build->create_build_script;
 
