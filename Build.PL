@@ -7,7 +7,7 @@ my $build_pkg = 'Module::Build';
 
 my $build = $build_pkg->new(
     module_name => 'Crypt::ECDH',
-    license => 'Perl',
+    license => 'artistic',
     build_requires => {},
     requires => {},
     recommends => {},
