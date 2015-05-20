@@ -2,8 +2,6 @@
 #include "perl.h"
 #include "XSUB.h"
 
-#include "ppport.h"
-
 #include <openssl/opensslconf.h>	/* for OPENSSL_NO_ECDH */
 #include <openssl/buffer.h>
 #include <openssl/crypto.h>
